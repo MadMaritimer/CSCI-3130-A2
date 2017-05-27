@@ -25,4 +25,24 @@ public class ValidityCheckTest {
         assertFalse(test.longEnough("1234567"));
         assertTrue(test.longEnough("12345678"));
     }
+    @Test
+    public void hasSpecChar() throws Exception{
+        assertFalse(test.hasSpecChar("abcdefgh"));
+        assertTrue(test.hasSpecChar("@bc"));
+    }
+    @Test
+    public void hasMixedCase() throws Exception{
+        assertFalse(test.hasMixedCase("ABCD"));
+        assertFalse(test.hasMixedCase("abcd"));
+        assertTrue(test.hasMixedCase("aBc"));
+    }
+    @Test
+    public void isNotCommon() throws Exception{
+        String[] notOK = {"12345678","123456789","1234567890","qwertyuiop","1q2w3e4r",
+                "abcd1234","zxcvbnm","football","baseball","letmeinplease" };
+        for (String badPass:notOK) {
+            assertFalse(test.isNotCommon(badPass));
+        }
+        assertTrue(test.isNotCommon("chicken"));
+    }
 }
